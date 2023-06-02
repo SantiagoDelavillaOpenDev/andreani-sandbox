@@ -213,11 +213,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/delavilla_s/andreani/mock-docs/andreani-sandbox/andreani-sandbox.csproj",
+      "projectUniqueName": "/home/delavilla_s/andreani/mock-docs/andreani-sandbox/andreani-sandbox/andreani-sandbox.csproj",
       "projectName": "andreani-sandbox",
-      "projectPath": "/home/delavilla_s/andreani/mock-docs/andreani-sandbox/andreani-sandbox.csproj",
+      "projectPath": "/home/delavilla_s/andreani/mock-docs/andreani-sandbox/andreani-sandbox/andreani-sandbox.csproj",
       "packagesPath": "/home/delavilla_s/.nuget/packages/",
-      "outputPath": "/home/delavilla_s/andreani/mock-docs/andreani-sandbox/obj/",
+      "outputPath": "/home/delavilla_s/andreani/mock-docs/andreani-sandbox/andreani-sandbox/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/delavilla_s/.nuget/NuGet/NuGet.Config"
