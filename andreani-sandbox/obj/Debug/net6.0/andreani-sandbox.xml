@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>andreani-sandbox</name>
+    </assembly>
+    <members>
+        <member name="M:andreani_sandbox.Controllers.AbastecimientoController.Post(andreani_sandbox.Models.Abastecimiento.AbastecimientoRequest)">
+            <summary>
+            Abastecimiento Solicitada
+            </summary>
+            <remarks>
+            Servico generación del evento de Orden de Abastecimiento solicitada para el consumo de SCE
+            </remarks>
+            <param name="abastecimiento">Datos necesario para solicitar una Orden de Abastecimiento</param>
+            <response code="200">OK</response>
+            <response code="400">Bad Request</response>
+            <response code="500">Internal Server Error</response>
+        </member>
+        <member name="M:andreani_sandbox.Controllers.AbastecimientoController.Get(System.Int32)">
+            <summary>
+            Transacción de Abastecimiento
+            </summary>
+            <remarks>
+            Servico de consulta del estado de la Orden de Compra Solicitada
+            </remarks>
+            <param name="id">Id Transacción</param>
+            <response code="202">Accepted</response>
+            <response code="400">Bad Request</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+        </member>
+        <member name="M:andreani_sandbox.Controllers.AltaLoteController.Post(andreani_sandbox.Models.AltaLote.LoteRequest)">
+            <summary>
+            Envía una solicitud de alta de lote
+            </summary>
+            <param name="lote">Lote que se añadirá</param>
+            <response code="202">Accepted</response>
+            <response code="400">Bad Request</response>
+            <response code="503">Service Unavailable</response>
+        </member>
+        <member name="M:andreani_sandbox.Controllers.AltaLoteController.Get(System.Int32)">
+            <summary>
+            Consulta de Solicitud de un alta de lote
+            </summary>
+            <param name="idTransaccion">Id del lote</param>
+            <response code="200">OK</response>
+            <response code="400">Bad Request</response>
+            <response code="401">Unauthorized</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+        </member>
+        <member name="M:andreani_sandbox.Controllers.FacturacionController.Post(andreani_sandbox.Models.Facturacion.FacturacionRequest)">
+            <summary>
+            Datos de facturación
+            </summary>
+            <param name="facturacion">Servicio generacion del evento de Datos Facturacion solicitada para el consumo de SCE</param>
+            <response code="202">Accepted</response>
+            <response code="400">Bad Request</response>
+            <response code="500">Internal Server Error</response>
+        </member>
+        <member name="M:andreani_sandbox.Controllers.FacturacionController.Get(System.Int32)">
+            <summary>
+            Transacción de Datos de Facturación
+            </summary>
+            <param name="facturacion">Servicio de consulta del estado de Datos facturacion Solicitada</param>
+            <response code="202">Accepted</response>
+            <response code="400">Bad Request</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+        </member>
+        <member name="M:andreani_sandbox.Controllers.PedidosController.Post(andreani_sandbox.Models.Pedidos.PedidoRequest)">
+            <summary>
+            Generar una solicitud de alta de pedido
+            </summary>
+            <param name="pedido">Pedido</param>
+            <response code="202">Accepted</response>
+            <response code="400">Bad Request</response>
+            <response code="500">Internal Server Error</response>
+            <response code="503">Service Unavailable</response>
+        </member>
+        <member name="M:andreani_sandbox.Controllers.PedidosController.Get(System.Int32)">
+            <summary>
+            Consulta una solicitud de alta pedido
+            </summary>
+            <param name="idTransaccion">Id del pedido</param>
+            <response code="200">OK</response>
+            <response code="400">Bad Request</response>
+            <response code="401">Unauthorized</response>
+            <response code="404">Not Found</response>
+            <response code="500">Internal Server Error</response>
+        </member>
+        <member name="M:CambioEstadoLote.Controllers.CambioEstadoLoteController.Post(andreani_sandbox.Models.CambioEstadoLote.CambioEstadoLoteRequest)">
+            <summary>
+            Envio de solicitud de cambio de estado de lote
+            </summary>
+            <param name="cambioEstadoLote">Body para la solicitud de cambio de estado de lote</param>
+            <response code="200">OK</response>
+            <response code="400">Bad Request</response>
+            <response code="503">Service Unavailable</response>
+        </member>
+        <member name="M:CambioEstadoLote.Controllers.CambioEstadoLoteController.Get(System.Int32)">
+            <summary>
+            Busqueda de una solicitud de cambio de estado de lote
+            </summary>
+            <param name="id">Id de transacción</param>
+            <response code="200">OK</response>
+            <response code="400">Bad Request</response>
+            <response code="404">Not Found</response>
+            <response code="503">Service Unavailable</response>
+        </member>
+    </members>
+</doc>
