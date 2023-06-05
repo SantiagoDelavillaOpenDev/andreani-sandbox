@@ -21,7 +21,7 @@ public class Origen
     [MaxLength(45)]
     public string localidad { get; set; }
     
-    [MaxLength()]
+    [MaxLength(25)]
     public string nombreProvincia { get; set; }
     
     [MaxLength(45)]

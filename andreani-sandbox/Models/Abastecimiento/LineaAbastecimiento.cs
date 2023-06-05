@@ -38,7 +38,7 @@ public class LineaAbastecimiento
     [MaxLength(20)]
     public string numeroDeLinea { get; set; }
     
-    [MaxLength(20)]
+    [MaxLength(50)]
     public string productoTrazable { get; set; }
     
     [Required]

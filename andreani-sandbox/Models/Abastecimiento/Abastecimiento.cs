@@ -4,6 +4,7 @@ namespace andreani_sandbox.Models.Abastecimiento;
 
 public class Abastecimiento
 {
+    
     public List<DatosAdicionalesAbastecimiento> datosAdicionales { get; set; }
     
     public string fechaDeRecepcionEsperada { get; set; }
