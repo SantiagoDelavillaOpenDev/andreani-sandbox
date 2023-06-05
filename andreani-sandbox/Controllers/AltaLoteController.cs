@@ -15,14 +15,37 @@ public class AltaLoteController : ControllerBase
     /// <param name="lote">Lote que se añadirá</param>
     /// <response code="202">Accepted</response>
     /// <response code="400">Bad Request</response>
+    /// <response code="401">Unauthorized</response>
     /// <response code="503">Service Unavailable</response>
     [ProducesResponseType(typeof(ResponseAltaLote), StatusCodes.Status202Accepted)]
     [ProducesResponseType(typeof(ErrorMessageAltaLote), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ErrorMessageAltaLote), StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(typeof(ErrorMessageAltaLote), StatusCodes.Status503ServiceUnavailable)]
 
     [HttpPost]
     public IActionResult Post([FromBody]LoteRequest lote)
     {
+        string authorizationHeader = HttpContext.Request.Headers["Authorization"];
+
+        if (authorizationHeader == "<API_KEY_VALUE>" || authorizationHeader == null)
+        {
+            return Unauthorized(new ErrorMessageAltaLote
+            {
+                Detail = "Error",
+                Errors = new List<ErrorAltaLote>
+                {
+                    new ErrorAltaLote
+                    {
+                        Field = "string",
+                        Message = "string"
+                    }
+                },
+                Status = 401,
+                Title = "string",
+                Type = "Unauthorized"
+            });
+        }
+        
         if (!ModelState.IsValid)
         {
             return BadRequest(new ErrorMessageAltaLote
@@ -71,6 +94,27 @@ public class AltaLoteController : ControllerBase
     [HttpGet("{id}")]
     public IActionResult Get(int id)
     {
+        string authorizationHeader = HttpContext.Request.Headers["Authorization"];
+
+        if (authorizationHeader == "<API_KEY_VALUE>" || authorizationHeader == null)
+        {
+            return Unauthorized(new ErrorMessageAltaLote
+            {
+                Detail = "Error",
+                Errors = new List<ErrorAltaLote>
+                {
+                    new ErrorAltaLote
+                    {
+                        Field = "string",
+                        Message = "string"
+                    }
+                },
+                Status = 401,
+                Title = "string",
+                Type = "Unauthorized"
+            });
+        }
+        
         if (!ModelState.IsValid)
         {
             return BadRequest(new ErrorMessageAltaLote

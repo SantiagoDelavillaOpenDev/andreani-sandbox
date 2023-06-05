@@ -5,7 +5,6 @@ namespace andreani_sandbox.Models.Pedidos;
 public class Articulo
 {
     [Required]
-    [MaxLength(22)]
     public int cantidad { get; set; }
     
     [Required]

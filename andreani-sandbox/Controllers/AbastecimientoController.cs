@@ -19,14 +19,37 @@ public class AbastecimientoController : ControllerBase
     /// <param name="abastecimiento">Datos necesario para solicitar una Orden de Abastecimiento</param>
     /// <response code="200">OK</response>
     /// <response code="400">Bad Request</response>
+    /// <response code="401">Unauthorized</response>
     /// <response code="500">Internal Server Error</response>
     [ProducesResponseType(typeof(ResponseAbastecimiento), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ErrorMessageAbastecimiento), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ErrorMessageAbastecimiento), StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(typeof(ErrorMessageAbastecimiento), StatusCodes.Status500InternalServerError)]
     
     [HttpPost]
     public IActionResult Post(AbastecimientoRequest abastecimiento)
     {
+        string authorizationHeader = HttpContext.Request.Headers["Authorization"];
+
+        if (authorizationHeader == "<API_KEY_VALUE>" || authorizationHeader == null)
+        {
+            return Unauthorized(new ErrorMessageAbastecimiento
+            {
+                Detail = "Error",
+                Errors = new List<ErrorAbastecimiento>
+                {
+                    new ErrorAbastecimiento
+                    {
+                        Field = "string",
+                        Message = "string"
+                    }
+                },
+                Status = 401,
+                Title = "string",
+                Type = "Unauthorized"
+            });
+        }
+        
         if (!ModelState.IsValid)
         {
             return BadRequest(new ErrorMessageAbastecimiento
@@ -67,16 +90,39 @@ public class AbastecimientoController : ControllerBase
     /// <param name="id">Id Transacción</param>
     /// <response code="202">Accepted</response>
     /// <response code="400">Bad Request</response>
+    /// <response code="401">Unauthorized</response>
     /// <response code="404">Not Found</response>
     /// <response code="500">Internal Server Error</response>
     [ProducesResponseType(typeof(AbastecimientoResponse), StatusCodes.Status202Accepted)]
     [ProducesResponseType(typeof(ErrorMessageAbastecimiento), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ErrorMessageAbastecimiento), StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(typeof(ErrorMessageAbastecimiento), StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(ErrorMessageAbastecimiento), StatusCodes.Status500InternalServerError)]
     
     [HttpGet("{id}")]
     public IActionResult Get(int id)
     {
+        string authorizationHeader = HttpContext.Request.Headers["Authorization"];
+
+        if (authorizationHeader == "<API_KEY_VALUE>" || authorizationHeader == null)
+        {
+            return Unauthorized(new ErrorMessageAbastecimiento
+            {
+                Detail = "Error",
+                Errors = new List<ErrorAbastecimiento>
+                {
+                    new ErrorAbastecimiento
+                    {
+                        Field = "string",
+                        Message = "string"
+                    }
+                },
+                Status = 401,
+                Title = "string",
+                Type = "Unauthorized"
+            });
+        }
+        
         if (!ModelState.IsValid)
         {
             return BadRequest(new ErrorMessageAbastecimiento

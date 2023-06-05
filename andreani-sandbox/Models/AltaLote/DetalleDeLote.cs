@@ -35,10 +35,8 @@ public class DetalleDeLote
         public string propietario { get; set; }
         
         [Required]
-        [MaxLength(50)]
         public int trazable { get; set; }
         
-        [MaxLength(50)]
         public int vidaUtil { get; set; }
         
         [MaxLength(128)]

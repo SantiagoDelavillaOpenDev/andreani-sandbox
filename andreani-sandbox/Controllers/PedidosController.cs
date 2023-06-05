@@ -15,16 +15,39 @@ public class PedidosController : ControllerBase
     /// <param name="pedido">Pedido</param>
     /// <response code="202">Accepted</response>
     /// <response code="400">Bad Request</response>
+    /// <response code="401">Unauthorized</response>
     /// <response code="500">Internal Server Error</response>
     /// <response code="503">Service Unavailable</response>
     [ProducesResponseType(typeof(ResponsePedidos), StatusCodes.Status202Accepted)]
     [ProducesResponseType(typeof(ErrorMessagePedidos), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ErrorMessagePedidos), StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(typeof(ErrorMessagePedidos), StatusCodes.Status500InternalServerError)]
     [ProducesResponseType(typeof(ErrorMessagePedidos), StatusCodes.Status503ServiceUnavailable)]
 
     [HttpPost]
     public IActionResult Post(PedidoRequest pedido)
     {
+        string authorizationHeader = HttpContext.Request.Headers["Authorization"];
+
+        if (authorizationHeader == "<API_KEY_VALUE>" || authorizationHeader == null)
+        {
+            return Unauthorized(new ErrorMessagePedidos
+            {
+                Detail = "Error",
+                Errors = new List<ErrorPedidos>
+                {
+                    new ErrorPedidos
+                    {
+                        Field = "string",
+                        Message = "string"
+                    }
+                },
+                Status = 401,
+                Title = "string",
+                Type = "Unauthorized"
+            });
+        }
+        
         if (!ModelState.IsValid)
         {
             return BadRequest(new ErrorMessagePedidos
@@ -72,6 +95,26 @@ public class PedidosController : ControllerBase
     [HttpGet("{id}")]
     public IActionResult Get(int id)
     {
+        string authorizationHeader = HttpContext.Request.Headers["Authorization"];
+
+        if (authorizationHeader == "<API_KEY_VALUE>" || authorizationHeader == null)
+        {
+            return Unauthorized(new ErrorMessagePedidos
+            {
+                Detail = "Error",
+                Errors = new List<ErrorPedidos>
+                {
+                    new ErrorPedidos
+                    {
+                        Field = "string",
+                        Message = "string"
+                    }
+                },
+                Status = 401,
+                Title = "string",
+                Type = "Unauthorized"
+            });
+        }
         
         if (!ModelState.IsValid)
         {

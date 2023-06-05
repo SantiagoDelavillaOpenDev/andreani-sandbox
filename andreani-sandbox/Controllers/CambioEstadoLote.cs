@@ -17,14 +17,35 @@ public class CambioEstadoLoteController : ControllerBase
     /// <param name="cambioEstadoLote">Body para la solicitud de cambio de estado de lote</param>
     /// <response code="200">OK</response>
     /// <response code="400">Bad Request</response>
+    /// <response code="401">Unauthorized</response>
     /// <response code="503">Service Unavailable</response>
     [ProducesResponseType(typeof(ResponseCambioEstadoLote), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ErrorMessageCambioEstadoLote), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ErrorMessageCambioEstadoLote), StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(typeof(ErrorMessageCambioEstadoLote), StatusCodes.Status503ServiceUnavailable)]
     [HttpPost]
     public IActionResult Post(CambioEstadoLoteRequest cambioEstadoLote)
     {
-        
+        string authorizationHeader = HttpContext.Request.Headers["Authorization"];
+
+        if (authorizationHeader == "<API_KEY_VALUE>" || authorizationHeader == null)
+        {
+            return Unauthorized(new ErrorMessageCambioEstadoLote
+            {
+                Detail = "Error",
+                Errors = new List<ErrorCambioEstadoLote>
+                {
+                    new ErrorCambioEstadoLote
+                    {
+                        Field = "string",
+                        Message = "string"
+                    }
+                },
+                Status = 401,
+                Title = "string",
+                Type = "Unauthorized"
+            });
+        }
         
         if (!ModelState.IsValid)
         {
@@ -62,15 +83,38 @@ public class CambioEstadoLoteController : ControllerBase
     /// <param name="id">Id de transacción</param>
     /// <response code="200">OK</response>
     /// <response code="400">Bad Request</response>
+    /// <response code="401">Unauthorized</response>
     /// <response code="404">Not Found</response>
     /// <response code="503">Service Unavailable</response>
     [ProducesResponseType(typeof(CambioEstadoLoteResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ErrorMessageCambioEstadoLote), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ErrorMessageCambioEstadoLote), StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(typeof(ErrorMessageCambioEstadoLote), StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(ErrorMessageCambioEstadoLote), StatusCodes.Status503ServiceUnavailable)]
     [HttpGet("{id}")]
      public IActionResult Get(int id)
      {
+         string authorizationHeader = HttpContext.Request.Headers["Authorization"];
+
+         if (authorizationHeader == "<API_KEY_VALUE>" || authorizationHeader == null)
+         {
+             return Unauthorized(new ErrorMessageCambioEstadoLote
+             {
+                 Detail = "Error",
+                 Errors = new List<ErrorCambioEstadoLote>
+                 {
+                     new ErrorCambioEstadoLote
+                     {
+                         Field = "string",
+                         Message = "string"
+                     }
+                 },
+                 Status = 401,
+                 Title = "string",
+                 Type = "Unauthorized"
+             });
+         }
+         
          if (!ModelState.IsValid)
          {
              return BadRequest(new ErrorMessageCambioEstadoLote
